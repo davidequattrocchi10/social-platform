@@ -13,8 +13,8 @@
 <body>
     <div class="container">
         <h2 class="my-4">Utenti ordinati per il numero di media caricati</h2>
-        <?php include 'db.php'; ?>
-        <?php include 'fetch_data.php'; ?>
+        <?php require_once __DIR__ .  '/database/connection/db.php'; ?>
+        <?php require_once __DIR__ .  '/database/fetch_data.php'; ?>
     </div>
 </body>
 
