@@ -13,6 +13,7 @@
 <body>
     <div class="container">
         <h2 class="my-4">Utenti ordinati per il numero di media caricati</h2>
+        <!-- Require once PHP files for establishing database connection and fetching data -->
         <?php require_once __DIR__ .  '/database/connection/db.php'; ?>
         <?php require_once __DIR__ .  '/database/fetch_data.php'; ?>
     </div>
@@ -27,7 +28,9 @@
             require_once __DIR__ . '/Objects/objects.php';
             ?>
 
-            <!-- Stampare i valori delle proprietà dei post -->
+            <!-- Print the values of Post properties -->
+
+            <!-- Post 1 -->
             <div class="col-md-6">
                 <div class="card mb-4">
                     <div class="card-header bg-primary text-white">
@@ -45,6 +48,8 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Post 2 -->
             <div class="col-md-6">
                 <div class="card mb-4">
                     <div class="card-header bg-primary text-white">
