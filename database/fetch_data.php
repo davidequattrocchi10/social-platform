@@ -1,4 +1,8 @@
 <?php
+
+require __DIR__ .  '/connection/db.php';
+
+
 /* Query SQL */
 $sql = "SELECT `users`.`username`, `users`.`email`, COUNT(`medias`.`user_id`) AS `num_media` 
         FROM `users` 

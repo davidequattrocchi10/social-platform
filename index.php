@@ -14,9 +14,54 @@
     <div class="container">
         <h2 class="my-4">Utenti ordinati per il numero di media caricati</h2>
         <!-- Require once PHP files for establishing database connection and fetching data -->
-        <?php require_once __DIR__ .  '/database/connection/db.php'; ?>
         <?php require_once __DIR__ .  '/database/fetch_data.php'; ?>
     </div>
+
+
+    <div class="container">
+        <h2 class="my-4">Nuovi oggetti tramite il DB</h2>
+        <!-- Require once PHP files for import class User and establishing database connection and fetching data -->
+        <?php require_once __DIR__ . '/Models/User.php'; ?>
+        <?php require_once __DIR__ .  '/database/fetch_from_db.php'; ?>
+        <?php
+        while ($row = $result->fetch_assoc()) {
+            // Create a User object across data in database
+            $user = new User($row['id'], $row['username'], $row['email'], $row['birthdate'], $row['phone']);
+            $users[] = $user;
+        }
+        ?>
+        <!-- Print results in a table -->
+        <?php if ($result->num_rows > 0) { ?>
+            <table class='table table-striped'>
+                <thead class='thead-light'>
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Birthdate</th>
+                        <th>Phone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($users as $key => $user) : ?>
+                        <tr>
+                            <td> <?php echo $key + 1 ?> </td>
+                            <td> <?php echo $user->getUsername() ?> </td>
+                            <td> <?php echo $user->getEmail() ?> </td>
+                            <td> <?php echo $user->getBirthdate() ?> </td>
+                            <td> <?php echo $user->getPhone() ?> </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php } else {
+            echo "Nessun risultato trovato.";
+        }
+        /* Close connection */
+        $connection->close(); ?>
+    </div>
+
+
 
 
     <div class="container p-3">
