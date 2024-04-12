@@ -121,7 +121,7 @@
         <div class="container p-2 mt-3">
             <ul class="nav nav-pills nav-fill">
                 <li class="nav-item">
-                    <a class="nav-link" href="../../index.php">Social Platform</a></a>
+                    <a class="nav-link" href="../../index.html">Social Platform</a></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="step3.php">Step 3</a>
