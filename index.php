@@ -8,112 +8,79 @@
     <!-- Bootstrap CSS v5.3.2 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        main {
+            /* Path to your background image */
+            background-image: url('https://www.keblog.it/wp-content/uploads/2021/11/belle-immagini-natura-01.jpg'), url('https://img.freepik.com/free-photo/2d-graphic-wallpaper-with-colorful-grainy-gradients_23-2151001503.jpg');
+            background-size: auto, cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center, center;
+            min-height: 90vh;
+            /* Set full height of viewport */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .content {
+            background-color: rgba(255, 255, 255, 0.7);
+            /* Semi-transparent white background */
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        footer {
+            background-color: #d5f2f8;
+            min-height: 10vh;
+
+        }
+    </style>
+
 </head>
 
 <body>
-    <div class="container">
-        <h2 class="my-4">Utenti ordinati per il numero di media caricati</h2>
-        <!-- Require once PHP files for establishing database connection and fetching data -->
-        <?php require_once __DIR__ .  '/database/fetch_data.php'; ?>
-    </div>
 
 
-    <div class="container">
-        <h2 class="my-4">Nuovi oggetti tramite il DB</h2>
-        <!-- Require once PHP files for import class User and establishing database connection and fetching data -->
-        <?php require_once __DIR__ . '/Models/User.php'; ?>
-        <?php require_once __DIR__ .  '/database/fetch_from_db.php'; ?>
-        <?php
-        while ($row = $result->fetch_assoc()) {
-            // Create a User object across data in database
-            $user = new User($row['id'], $row['username'], $row['email'], $row['birthdate'], $row['phone']);
-            $users[] = $user;
-        }
-        ?>
-        <!-- Print results in a table -->
-        <?php if ($result->num_rows > 0) { ?>
-            <table class='table table-striped'>
-                <thead class='thead-light'>
-                    <tr>
-                        <th>ID</th>
-                        <th>Username</th>
-                        <th>Email</th>
-                        <th>Birthdate</th>
-                        <th>Phone</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($users as $key => $user) : ?>
-                        <tr>
-                            <td> <?php echo $key + 1 ?> </td>
-                            <td> <?php echo $user->getUsername() ?> </td>
-                            <td> <?php echo $user->getEmail() ?> </td>
-                            <td> <?php echo $user->getBirthdate() ?> </td>
-                            <td> <?php echo $user->getPhone() ?> </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        <?php } else {
-            echo "Nessun risultato trovato.";
-        }
-        /* Close connection */
-        $connection->close(); ?>
-    </div>
+    <header>
 
-
-
-
-    <div class="container p-3">
-        <div class="row mb-3">
-            <h1 class="text-center mb-4">Oggetti instanziati</h1>
-            <?php
-            require_once __DIR__ . '/Models/Post.php';
-            require_once __DIR__ . '/Models/Media.php';
-            require_once __DIR__ . '/Objects/objects.php';
-            ?>
-
-            <!-- Print the values of Post properties -->
-
-            <!-- Post 1 -->
-            <div class="col-md-6">
-                <div class="card mb-4">
-                    <div class="card-header bg-primary text-white">
-                        <h3 class="card-title text-center">Post 1 </h3>
-                        <h4 class="card-title text-center">Titolo: <?php echo $post1->getTitle(); ?></h4>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">Tags: <?php echo $post1->getTags(); ?></p>
-                        <?php foreach ($post1->getMediaList() as $media) : ?>
-                            <div class="mb-3">
-                                <p class="card-text">Tipo: <?php echo $media->getType(); ?></p>
-                                <img src="<?php echo $media->getPath(); ?>" class="card-img-top img-fluid" style="height:250px;" alt="Media">
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Post 2 -->
-            <div class="col-md-6">
-                <div class="card mb-4">
-                    <div class="card-header bg-primary text-white">
-                        <h3 class="card-title text-center">Post 2 </h3>
-                        <h4 class="card-title text-center">Titolo: <?php echo $post2->getTitle(); ?></h4>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">Tags: <?php echo $post2->getTags(); ?></p>
-                        <?php foreach ($post2->getMediaList() as $media) : ?>
-                            <div class="mb-3">
-                                <p class="card-text">Tipo: <?php echo $media->getType(); ?></p>
-                                <img src="<?php echo $media->getPath(); ?>" class="card-img-top img-fluid" style="height:250px;" alt="Media">
-                            </div>
-                        <?php endforeach; ?>
+    </header>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mx-auto">
+                    <div class="content">
+                        <h1 class="text-center mb-4">Welcome to Social Platform</h1>
+                        <p>In this platform you can create posts, adding one or more media such as photos and videos.</p>
+                        <p class="mb-5">You will also be able to interact with posts created by other users by expressing their appreciation through a simple like.</p>
+                        <div class="d-grid gap-2 col-6 mx-auto">
+                            <button class="btn btn-primary" type="button">Sign Up</button>
+                            <button class="btn btn-primary" type="button">Log In</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
+
+    <footer>
+        <div class="container p-3">
+            <ul class="nav nav-pills nav-fill">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="index.php">Social Platform</a></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="components/footer/step3.php">Step 3</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="components/footer/step4.php">Step 4</a>
+                </li>
+            </ul>
+        </div>
+    </footer>
 </body>
 
 </html>
