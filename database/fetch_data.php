@@ -1,5 +1,6 @@
 <?php
 
+/* Connection database */
 require __DIR__ .  '/connection/db.php';
 
 
