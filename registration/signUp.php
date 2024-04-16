@@ -27,7 +27,7 @@
         <div class="row">
             <div class="col-lg-6 mx-auto">
                 <div class="content">
-                    <h1 class="text-center mb-4">Sign Up - Social Platform</h1>
+                    <h1 class="text-center my-4 ">Sign Up - Social Platform</h1>
                     <form action="insertUser.php" method="POST">
                         <div class="mb-3">
                             <label for="formGroupExampleInput" class="form-label">Name</label>
@@ -53,7 +53,7 @@
                             <label for="formGroupExampleInput2" class="form-label">Phone</label>
                             <input type="text" class="form-control" name="phone" placeholder="Insert your phone number">
                         </div>
-                        <button class="btn btn-primary" type="submit">Submit</button>
+                        <button class="btn btn-primary mb-2" type="submit">Submit</button>
                     </form>
                 </div>
             </div>
