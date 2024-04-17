@@ -58,6 +58,6 @@ if ($stmt->execute() === false) {
 $stmt->close();
 $connection->close();
 
-// Se l'inserimento nel database è avvenuto con successo, reindirizza alla pagina di benvenuto
+// If everything is ok, go to welcome page
 header("Location: ../welcome.php");
 exit();

@@ -7,47 +7,47 @@ $password = $_POST['password'];
 // Connection database 
 require __DIR__ . '/../database/connection/db.php';
 
-// Prepara una query per selezionare l'utente con l'username specificato
+// Prepare a query to select the user with the specified username
 $stmt = $connection->prepare("SELECT id, username, password FROM users WHERE username = ?");
 
-// Verifica se la preparazione della query ha avuto successo
+// Check if the query preparation was successful
 if ($stmt === false) {
     die("Error preparing statement: " . $connection->error);
 }
 
-// Bind del parametro alla query
+// Bind_param
 $stmt->bind_param("s", $username);
 
-// Esegui la query
+// Execute
 if ($stmt->execute() === false) {
     die("Error executing statement: " . $stmt->error);
 }
 
-// Prendi il risultato della query
+// Get the query result
 $result = $stmt->get_result();
 
-// Verifica se è stato trovato un utente con l'username specificato
+// Checks if a user with the specified username was found
 if ($result->num_rows === 1) {
-    // Prendi i dati dell'utente dal risultato della query
+    // Get user data from the query result
     $user = $result->fetch_assoc();
 
-    // Verifica se la password inserita corrisponde alla password nel database
+    // Check if the password entered matches the password in the database
     if (password_verify($password, $user['password'])) {
-        // Password corretta, permetti l'accesso e reindirizza alla pagina di benvenuto
-        $_SESSION['user_id'] = $user['id']; // Salvare l'ID dell'utente in sessione per un eventuale utilizzo successivo
+        // Correct password
+        $_SESSION['user_id'] = $user['id']; // Saved user's ID 
         header("Location: ../welcome.php");
         exit();
     } else {
-        // Password non corretta
+        // Incorrect password
         $_SESSION['user_found'] = "Wrong password.";
         header("Location: login_credentials.php");
     }
 } else {
+    // User not found
     $_SESSION['user_found'] = "User not found.";
     header("Location: login_credentials.php");
-    // Nessun utente trovato con l'username specificato
 }
 
-// Chiudi lo statement e la connessione al database
+// Close statement and connection
 $stmt->close();
 $connection->close();
