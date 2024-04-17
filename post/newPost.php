@@ -17,9 +17,8 @@
         @media (min-width: 992px) {
             .col-md-12 {
                 flex: 0 0 720px;
-                /* Imposta la larghezza fissa a 720px */
+                /* set width 720px */
                 max-width: 720px;
-                /* Imposta la larghezza massima a 720px */
                 margin: 0 auto;
             }
         }
@@ -35,7 +34,7 @@
 
 <body>
 
-    <?php include_once __DIR__ . "/../components/header/header_welcomePage.php" ?>
+    <?php include_once __DIR__ . "/../components/header/header_newPost.php" ?>
 
 
     <main>
@@ -44,14 +43,22 @@
                 <div class="col-lg-6 mx-auto">
                     <div class="content">
                         <h1 class="text-center my-4 ">Create a Post</h1>
-                        <form action="insertUser.php" method="POST">
+                        <form action="checkPost.php" method="POST">
                             <div class="mb-3">
                                 <label for="formGroupExampleInput" class="form-label">Titolo</label>
-                                <input type="text" class="form-control" name="name" placeholder="Insert post title">
+                                <input type="text" class="form-control" name="title" placeholder="Insert post title">
                             </div>
                             <div class="mb-3">
                                 <label for="formGroupExampleInput2" class="form-label">Tags</label>
-                                <input type="text" class="form-control" name="lastname" placeholder="Insert tags">
+                                <input type="text" class="form-control" name="tags" placeholder="Insert tags">
+                            </div>
+                            <div class="mb-3">
+                                <label for="formGroupExampleInput2" class="form-label">Tipo di media</label>
+                                <input type="text" class="form-control" name="typeMedia" placeholder="Insert photo or video">
+                            </div>
+                            <div class="mb-3">
+                                <label for="formGroupExampleInput2" class="form-label">Percorso del file media</label>
+                                <input type="text" class="form-control" name="pathMedia" placeholder="Insert path to the media file">
                             </div>
                             <button class="btn btn-primary mb-2" type="submit">Submit</button>
                         </form>

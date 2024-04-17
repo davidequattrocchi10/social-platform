@@ -17,9 +17,8 @@
         @media (min-width: 992px) {
             .col-md-12 {
                 flex: 0 0 720px;
-                /* Imposta la larghezza fissa a 720px */
+                /* Set width 720px */
                 max-width: 720px;
-                /* Imposta la larghezza massima a 720px */
                 margin: 0 auto;
             }
         }
@@ -48,40 +47,56 @@
                 </ul>
             </div>
             <?php
-            require_once __DIR__ . '/Models/Post.php';
             require_once __DIR__ . '/Models/Media.php';
-            require_once __DIR__ . '/Objects/objects.php';
+            require_once __DIR__ . '/Models/Post.php';
             ?>
 
-            <!-- Posts-->
-            <?php foreach ($posts as $post) : ?>
-                <div class="col-md-12">
-                    <div class="card mb-4">
-                        <div class="card-header bg-primary text-white">
-                            <h3 class="card-title text-center">Post <?php echo $post->getId(); ?> </h3>
-                            <h4 class="card-title text-center">Titolo: <?php echo $post->getTitle(); ?></h4>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">Tags: <?php echo $post->getTags(); ?></p>
-                            <?php foreach ($post->getMediaList() as $media) : ?>
-                                <div class="mb-3">
-                                    <p class="card-text">Tipo: <?php echo $media->getType(); ?></p>
-                                    <?php if ($media->getType() === 'photo') : ?>
-                                        <img src="<?php echo $media->getPath(); ?>" class="card-img-top img-fluid" style="height:250px;" alt="Media">
-                                    <?php elseif ($media->getType() === 'video') : ?>
-                                        <video controls class="card-img-top" style="max-height: 250px;">
-                                            <source src="<?php echo $media->getPath(); ?>" type="video/mp4">
-                                            Your browser does not support the video tag.
-                                        </video>
-                                    <?php endif; ?>
-                                </div>
-                            <?php endforeach; ?>
+            <!-- Require once PHP file for establishing database connection and fetching data -->
+            <?php require_once __DIR__ .  '/database/fetch_posts.php';
+            while ($row = $result->fetch_assoc()) {
+                // Create a post object across data in database
+                $post = new Post($row['id'], $row['title'], $row['tags'], new Media($row['media_id'], $row['type'], $row['path']));
+                $posts[] = $post;
+            }
+            ?>
+            <!-- Posts -->
+            <?php if ($result->num_rows > 0) {
+                foreach ($posts as $post) : ?>
+                    <div class="col-md-12">
+                        <div class="card mb-4">
+                            <div class="card-header bg-primary text-white">
+                                <h3 class="card-title text-center">Post <?php echo $post->getId(); ?> </h3>
+                                <h4 class="card-title text-center">Titolo: <?php echo $post->getTitle(); ?></h4>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">Tags: <?php echo $post->getTags(); ?></p>
+                                <?php foreach ($post->getMediaList() as $media) : ?>
+                                    <div class="mb-3">
+                                        <p class="card-text">Tipo: <?php echo $media->getType(); ?></p>
+                                        <?php if ($media->getType() === 'photo') : ?>
+                                            <img src="<?php echo $media->getPath(); ?>" class="card-img-top img-fluid" style="height:250px;" alt="Media">
+                                        <?php elseif ($media->getType() === 'video') : ?>
+                                            <video controls class="card-img-top" style="max-height: 250px;">
+                                                <source src="<?php echo $media->getPath(); ?>" type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                        <?php endif; ?>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
                         </div>
                     </div>
-                </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
+            <?php } else {
+                echo "Nessun risultato trovato.";
+            }
+            /* Close connection */
+            $connection->close(); ?>
+        </div>
         </div>
     </main>
+
+
 
     <footer>
         <div class="container p-3">

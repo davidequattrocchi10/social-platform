@@ -31,7 +31,6 @@ session_start();
 </nav>
 
 <?php
-session_start();
 if (isset($_SESSION['generated_password'])) {
     // Show password
     $generated_password = $_SESSION['generated_password'];
