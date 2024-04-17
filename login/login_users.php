@@ -34,7 +34,9 @@ if ($result->num_rows === 1) {
     // Check if the password entered matches the password in the database
     if (password_verify($password, $user['password'])) {
         // Correct password
-        $_SESSION['user_id'] = $user['id']; // Saved user's ID 
+        $_SESSION['user_username'] = $user['username']; // Saved user's username
+        // Delete password saved in the signUp
+        unset($_SESSION['generated_password']);
         header("Location: ../welcome.php");
         exit();
     } else {

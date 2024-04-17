@@ -27,6 +27,17 @@ class Post
 
 
     /**
+     * Get the id of the post.
+     *
+     * @return string The id of the post.
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+
+    /**
      * Get the title of the post.
      *
      * @return string The title of the post.

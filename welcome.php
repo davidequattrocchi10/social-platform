@@ -14,6 +14,16 @@
             background-color: #d5f2f8;
         }
 
+        @media (min-width: 992px) {
+            .col-md-12 {
+                flex: 0 0 720px;
+                /* Imposta la larghezza fissa a 720px */
+                max-width: 720px;
+                /* Imposta la larghezza massima a 720px */
+                margin: 0 auto;
+            }
+        }
+
         footer {
             background-color: #d5f2f8;
             min-height: 10vh;
@@ -24,66 +34,50 @@
 </head>
 
 <body>
-    <?php
-    session_start();
-    ?>
 
-    <header>
-        <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">ID User: <button><?php echo $_SESSION['user_id'] ?></button></a>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Profile</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Posts</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Information
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">My posts</a></li>
-                                <li><a class="dropdown-item" href="#">My likes</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-                </div>
-            </div>
-        </nav>
-    </header>
+    <?php include_once __DIR__ . "/components/header/header_welcomePage.php" ?>
+
 
     <main>
-        <div class="container">
-            <div class="row">
+        <div class="container p-3">
+            <div class="row mb-3">
+                <h1 class="text-center mb-4">POSTS</h1>
                 <?php
-                session_start();
-                if (isset($_SESSION['generated_password'])) {
-                    $generated_password = $_SESSION['generated_password'];
-
-                    // Utilizza la password generata come desideri, ad esempio visualizzandola
-                    echo "La tua password generata è: " . $generated_password;
-                } else {
-                    // Se la password generata non è presente nella sessione, gestisci il caso di errore o reindirizza l'utente altrove
-                    echo "Errore: password non trovata nella sessione.";
-                }
+                require_once __DIR__ . '/Models/Post.php';
+                require_once __DIR__ . '/Models/Media.php';
+                require_once __DIR__ . '/Objects/objects.php';
                 ?>
+
+                <!-- Posts-->
+                <?php foreach ($posts as $post) : ?>
+                    <div class="col-md-12">
+                        <div class="card mb-4">
+                            <div class="card-header bg-primary text-white">
+                                <h3 class="card-title text-center">Post <?php echo $post->getId(); ?> </h3>
+                                <h4 class="card-title text-center">Titolo: <?php echo $post->getTitle(); ?></h4>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">Tags: <?php echo $post->getTags(); ?></p>
+                                <?php foreach ($post->getMediaList() as $media) : ?>
+                                    <div class="mb-3">
+                                        <p class="card-text">Tipo: <?php echo $media->getType(); ?></p>
+                                        <img src="<?php echo $media->getPath(); ?>" class="card-img-top img-fluid" style="height:250px;" alt="Media">
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </div>
-    </main>
 
+    </main>
 
     <footer>
         <div class="container p-3">
             <ul class="nav nav-pills nav-fill">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="index.html">Come back</a>
+                    <a class="nav-link active" aria-current="page" href="index.html">Exit</a>
                 </li>
             </ul>
         </div>

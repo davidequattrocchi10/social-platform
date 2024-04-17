@@ -81,7 +81,7 @@
             <div class="col-md-6">
                 <div class="card mb-4">
                     <div class="card-header bg-primary text-white">
-                        <h3 class="card-title text-center">Post 1 </h3>
+                        <h3 class="card-title text-center">Post <?php echo $post1->getId(); ?> </h3>
                         <h4 class="card-title text-center">Titolo: <?php echo $post1->getTitle(); ?></h4>
                     </div>
                     <div class="card-body">
@@ -100,7 +100,7 @@
             <div class="col-md-6">
                 <div class="card mb-4">
                     <div class="card-header bg-primary text-white">
-                        <h3 class="card-title text-center">Post 2 </h3>
+                        <h3 class="card-title text-center">Post <?php echo $post2->getId(); ?> </h3>
                         <h4 class="card-title text-center">Titolo: <?php echo $post2->getTitle(); ?></h4>
                     </div>
                     <div class="card-body">

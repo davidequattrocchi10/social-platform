@@ -59,5 +59,6 @@ $stmt->close();
 $connection->close();
 
 // If everything is ok, go to welcome page
+$_SESSION['user_username'] = $username;
 header("Location: ../welcome.php");
 exit();
