@@ -41,34 +41,39 @@
     <main>
         <div class="container p-3">
             <div class="row mb-3">
-                <h1 class="text-center mb-4">POSTS</h1>
-                <?php
-                require_once __DIR__ . '/Models/Post.php';
-                require_once __DIR__ . '/Models/Media.php';
-                require_once __DIR__ . '/Objects/objects.php';
-                ?>
+                <ul class="nav nav-pills nav-fill">
+                    <li class="nav-item">
+                        <a href="post/newPost.php"><button type="button" class="btn btn-primary">Create a New Post</button></a>
+                    </li>
+                </ul>
+            </div>
+            <?php
+            require_once __DIR__ . '/Models/Post.php';
+            require_once __DIR__ . '/Models/Media.php';
+            require_once __DIR__ . '/Objects/objects.php';
+            ?>
 
-                <!-- Posts-->
-                <?php foreach ($posts as $post) : ?>
-                    <div class="col-md-12">
-                        <div class="card mb-4">
-                            <div class="card-header bg-primary text-white">
-                                <h3 class="card-title text-center">Post <?php echo $post->getId(); ?> </h3>
-                                <h4 class="card-title text-center">Titolo: <?php echo $post->getTitle(); ?></h4>
-                            </div>
-                            <div class="card-body">
-                                <p class="card-text">Tags: <?php echo $post->getTags(); ?></p>
-                                <?php foreach ($post->getMediaList() as $media) : ?>
-                                    <div class="mb-3">
-                                        <p class="card-text">Tipo: <?php echo $media->getType(); ?></p>
-                                        <img src="<?php echo $media->getPath(); ?>" class="card-img-top img-fluid" style="height:250px;" alt="Media">
-                                    </div>
-                                <?php endforeach; ?>
-                            </div>
+            <!-- Posts-->
+            <?php foreach ($posts as $post) : ?>
+                <div class="col-md-12">
+                    <div class="card mb-4">
+                        <div class="card-header bg-primary text-white">
+                            <h3 class="card-title text-center">Post <?php echo $post->getId(); ?> </h3>
+                            <h4 class="card-title text-center">Titolo: <?php echo $post->getTitle(); ?></h4>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Tags: <?php echo $post->getTags(); ?></p>
+                            <?php foreach ($post->getMediaList() as $media) : ?>
+                                <div class="mb-3">
+                                    <p class="card-text">Tipo: <?php echo $media->getType(); ?></p>
+                                    <img src="<?php echo $media->getPath(); ?>" class="card-img-top img-fluid" style="height:250px;" alt="Media">
+                                </div>
+                            <?php endforeach; ?>
                         </div>
                     </div>
-                <?php endforeach; ?>
-            </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
         </div>
 
     </main>
@@ -77,7 +82,7 @@
         <div class="container p-3">
             <ul class="nav nav-pills nav-fill">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="index.html">Exit</a>
+                    <a class="nav-link active" aria-current="page" href="index.html">Esci da Social Platform</a>
                 </li>
             </ul>
         </div>
