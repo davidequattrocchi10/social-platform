@@ -66,7 +66,14 @@
                             <?php foreach ($post->getMediaList() as $media) : ?>
                                 <div class="mb-3">
                                     <p class="card-text">Tipo: <?php echo $media->getType(); ?></p>
-                                    <img src="<?php echo $media->getPath(); ?>" class="card-img-top img-fluid" style="height:250px;" alt="Media">
+                                    <?php if ($media->getType() === 'photo') : ?>
+                                        <img src="<?php echo $media->getPath(); ?>" class="card-img-top img-fluid" style="height:250px;" alt="Media">
+                                    <?php elseif ($media->getType() === 'video') : ?>
+                                        <video controls class="card-img-top" style="max-height: 250px;">
+                                            <source src="<?php echo $media->getPath(); ?>" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    <?php endif; ?>
                                 </div>
                             <?php endforeach; ?>
                         </div>
@@ -74,8 +81,6 @@
                 </div>
             <?php endforeach; ?>
         </div>
-        </div>
-
     </main>
 
     <footer>
