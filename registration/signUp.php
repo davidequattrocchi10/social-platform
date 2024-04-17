@@ -22,6 +22,13 @@
 </head>
 
 <body>
+    <?php
+    session_start();
+    // Check if there is a error
+    if (isset($_SESSION['error'])) {
+        echo '<div class="alert alert-danger" role="alert">' . $_SESSION['error'] . '</div>';
+        unset($_SESSION['error']);
+    } ?>
 
     <div class="container">
         <div class="row">
@@ -47,7 +54,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="formGroupExampleInput2" class="form-label">Birthdate</label>
-                            <input type="text" class="form-control" name="birthdate" placeholder="Insert your birthdate">
+                            <input type="text" class="form-control" name="birthdate" placeholder="Insert your birthdate (YYYY-MM-DD)">
                         </div>
                         <div class="mb-3">
                             <label for="formGroupExampleInput2" class="form-label">Phone</label>
