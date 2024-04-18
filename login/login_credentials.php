@@ -30,14 +30,12 @@
 <body>
     <?php
     session_start();
-    var_dump($_SESSION['generated_password']);
-    var_dump($_SESSION['error']);
-    var_dump($_SESSION['user_found']);
 
     // If there isn't a user
     if (isset($_SESSION['user_found'])) { ?>
         <div class="alert alert-danger" role="alert">
-            <?php echo $_SESSION['user_found'] ?>
+            <?php echo $_SESSION['user_found'];
+            unset($_SESSION['user_found']); ?>
         </div>
     <?php
     }

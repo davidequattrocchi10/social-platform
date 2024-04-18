@@ -44,5 +44,38 @@ if (isset($_SESSION['generated_password'])) {
         </div>
     </nav>
 <?php
+    unset($_SESSION['generated_password']);
+}
+
+if (isset($_SESSION['success'])) {
+    // Show post create
+    $success = $_SESSION['success'];
+?>
+    <nav class="navbar navbar-expand-lg" style="background-color: #66ff00;">
+        <div class="container-fluid">
+            <div class="nav-item">
+                <h6><?php echo $success; ?></h6>
+
+            </div>
+        </div>
+    </nav>
+<?php
+    unset($_SESSION['success']);
+}
+
+if (isset($_SESSION['error'])) {
+    // Show error to create a post
+    $error = $_SESSION['error'];
+?>
+    <nav class="navbar navbar-expand-lg" style="background-color: #a61022;">
+        <div class="container-fluid">
+            <div class="nav-item">
+                <h6><?php echo $error; ?></h6>
+
+            </div>
+        </div>
+    </nav>
+<?php
+    unset($_SESSION['error']);
 }
 ?>

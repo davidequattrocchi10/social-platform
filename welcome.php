@@ -61,6 +61,8 @@
             ?>
             <!-- Posts -->
             <?php if ($result->num_rows > 0) {
+                // Invert the post array
+                $posts = array_reverse($posts);
                 foreach ($posts as $post) : ?>
                     <div class="col-md-12">
                         <div class="card mb-4">
