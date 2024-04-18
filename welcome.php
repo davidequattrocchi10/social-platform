@@ -55,7 +55,7 @@
             <?php require_once __DIR__ .  '/database/fetch_posts.php';
             while ($row = $result->fetch_assoc()) {
                 // Create a post object across data in database
-                $post = new Post($row['id'], $row['title'], $row['tags'], new Media($row['media_id'], $row['type'], $row['path']));
+                $post = new Post($row['id'], $row['title'], $row['tags'], $row['user_id'], new Media($row['media_id'], $row['type'], $row['path']));
                 $posts[] = $post;
             }
             ?>
@@ -72,6 +72,7 @@
                             </div>
                             <div class="card-body">
                                 <p class="card-text">Tags: <?php echo $post->getTags(); ?></p>
+                                <p class="card-text">Creato dall'utente con ID: <?php echo $post->getUserId(); ?></p>
                                 <?php foreach ($post->getMediaList() as $media) : ?>
                                     <div class="mb-3">
                                         <p class="card-text">Tipo: <?php echo $media->getType(); ?></p>

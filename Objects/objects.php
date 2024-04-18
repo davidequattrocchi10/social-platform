@@ -10,11 +10,12 @@ $post1 = new Post(
     1,
     'Finalmente si parte! Destinazione vacanze',
     "mare, estate, vacanze, relax, spiaggia",
+    0,
     $media1
 );
 
 // Create Post Object with a multiple Media  
-$post2 = new Post(2, 'Una giornata di sole sulla spiaggia', "tramonto, serata, relax", $media1, $media2);
+$post2 = new Post(2, 'Una giornata di sole sulla spiaggia', "tramonto, serata, relax", 0, $media1, $media2);
 
 
 //Create Objects for my web app - I decided to use the database
