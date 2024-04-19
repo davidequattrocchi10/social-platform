@@ -54,7 +54,39 @@ if ($stmt->execute() === false) {
     die("Error executing statement: " . $stmt->error);
 }
 
-// Close statement and connection 
+// Close statement 
+$stmt->close();
+
+
+// Prepare a query to select the user with the specified username
+$stmt = $connection->prepare("SELECT id FROM users WHERE username = ?");
+
+// Check if the query preparation was successful
+if ($stmt === false) {
+    die("Error preparing statement: " . $connection->error);
+}
+
+// Bind_param
+$stmt->bind_param("s", $username);
+
+// Execute
+if ($stmt->execute() === false) {
+    die("Error executing statement: " . $stmt->error);
+}
+
+// Get the query result
+$result = $stmt->get_result();
+
+// Checks if a user with the specified username was found
+if ($result->num_rows === 1) {
+    // Get user data from the query result
+    $user = $result->fetch_assoc();
+
+    // Saved user's id
+    $_SESSION['user_id'] = $user['id'];
+}
+
+// Close statement and connection
 $stmt->close();
 $connection->close();
 

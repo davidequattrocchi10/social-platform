@@ -39,9 +39,9 @@ if ($stmt_media->execute()) {
     $media_id = $connection->insert_id;
 
     // Inserisci il post nella tabella app_posts con l'ID del media correlato, utilizzando un'istruzione preparata
-    $insert_post = "INSERT INTO app_posts (title, tags, media_id) VALUES (?, ?, ?)";
+    $insert_post = "INSERT INTO app_posts (title, tags, user_id, media_id) VALUES (?, ?, ?, ?)";
     $stmt_post = $connection->prepare($insert_post);
-    $stmt_post->bind_param("ssi", $title, $tags, $media_id);
+    $stmt_post->bind_param("sssi", $title, $tags, $_SESSION['user_id'], $media_id);
 
     if ($stmt_post->execute()) {
         $_SESSION['success'] = "Nuovo post creato con successo!";
