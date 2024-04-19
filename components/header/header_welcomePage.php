@@ -3,7 +3,7 @@ session_start();
 ?>
 <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Welcome: <button><?php echo $_SESSION['user_username'] ?></button></a>
+        <a class="navbar-brand" href="#">Welcome: <button><?php echo $_SESSION['user_username'] . $_SESSION['user_id'] ?></button></a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">

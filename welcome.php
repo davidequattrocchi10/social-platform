@@ -96,7 +96,6 @@
             /* Close connection */
             $connection->close(); ?>
         </div>
-        </div>
     </main>
 
 
