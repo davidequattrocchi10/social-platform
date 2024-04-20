@@ -41,6 +41,8 @@
                             <div class="card-body">
                                 <p class="card-text">Tags: <?php echo $post->getTags(); ?></p>
                                 <p class="card-text">Creato dall'utente con ID: <?php echo $post->getUserId(); ?></p>
+
+
                                 <?php foreach ($post->getMediaList() as $media) : ?>
                                     <div class="mb-3">
                                         <p class="card-text">Tipo: <?php echo $media->getType(); ?></p>
@@ -54,7 +56,13 @@
                                         <?php endif; ?>
                                     </div>
                                 <?php endforeach; ?>
+                                <button class="btn btn-light like-btn " data-post-id="<?php echo $post->getId(); ?>" style="border: 1px solid black;">Mi piace</button>
+                                <button class="btn btn-light unlike-btn " data-post-id="<?php echo $post->getId(); ?>" style="border: 1px solid black;">Togli Mi piace</button>
+
+                                <span class="badge bg-primary"> tot likes
+                                </span>
                             </div>
+
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -77,6 +85,8 @@
             </ul>
         </div>
     </footer>
+
+    <script src="lib/functions.js"></script>
 </body>
 
 </html>
