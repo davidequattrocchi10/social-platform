@@ -87,6 +87,30 @@
     </footer>
 
     <script src="lib/functions.js"></script>
+    <script>
+        // When the page is  loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Send an AJAX request to get the list of posts liked by the current user
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', 'get_like_post.php', true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    const likedPosts = JSON.parse(xhr.responseText);
+                    likedPosts.forEach(function(postId) {
+                        const likeButton = document.querySelector('.like-btn[data-post-id="' + postId + '"]');
+                        if (likeButton) {
+                            likeButton.classList.remove('btn-light');
+                            likeButton.classList.add('btn-primary');
+                            likeButton.dataset.liked = 'true';
+                        }
+                    });
+                } else {
+                    console.error('Errore nella richiesta AJAX: ' + xhr.status);
+                }
+            };
+            xhr.send();
+        });
+    </script>
 </body>
 
 </html>
