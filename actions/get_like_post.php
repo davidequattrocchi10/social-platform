@@ -4,7 +4,7 @@ if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
 
     /* Connection database */
-    require_once __DIR__ . '/database/connection/db.php';
+    require_once __DIR__ . '/../database/connection/db.php';
 
     /* Query SQL */
     $sql = "SELECT post_id FROM app_likes WHERE user_id = ?";

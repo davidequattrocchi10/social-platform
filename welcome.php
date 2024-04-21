@@ -92,10 +92,11 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Send an AJAX request to get the list of posts liked by the current user
             const xhr = new XMLHttpRequest();
-            xhr.open('GET', 'get_like_post.php', true);
+            xhr.open('GET', 'actions/get_like_post.php', true);
             xhr.onload = function() {
                 if (xhr.status === 200) {
                     const likedPosts = JSON.parse(xhr.responseText);
+                    saveLikedPostsToSession(likedPosts);
                     likedPosts.forEach(function(postId) {
                         const likeButton = document.querySelector('.like-btn[data-post-id="' + postId + '"]');
                         if (likeButton) {

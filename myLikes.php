@@ -7,6 +7,14 @@
 
     <main>
         <h1>MY LIKES</h1>
+        <?php
+        if (isset($_SESSION['likedPosts'])) {
+            $likedPosts = $_SESSION['likedPosts'];
+            var_dump($likedPosts);
+        } else {
+            var_dump('array likedPosts non recuperato');
+        }
+        ?>
 
     </main>
 
