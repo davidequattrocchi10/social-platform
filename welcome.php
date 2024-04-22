@@ -96,7 +96,6 @@
             xhr.onload = function() {
                 if (xhr.status === 200) {
                     const likedPosts = JSON.parse(xhr.responseText);
-                    saveLikedPostsToSession(likedPosts);
                     likedPosts.forEach(function(postId) {
                         const likeButton = document.querySelector('.like-btn[data-post-id="' + postId + '"]');
                         if (likeButton) {
