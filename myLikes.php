@@ -6,7 +6,7 @@
 
 
     <main>
-        <div class="container p-3">
+        <div class="container p-3" style="min-height: 80vh;">
             <div class="row mb-3 mx-3">
                 <h3 class="text-center bg-primary text-white p-1 rounded">MY LIKES</h3>
             </div>
@@ -35,44 +35,56 @@
             ?>
             <!-- Posts -->
             <?php if ($result->num_rows > 0) {
-                // Invert the post array
-                $posts = array_reverse($posts);
-                foreach ($posts as $post) :
-                    // If the post id matches the id of the posts where the user has liked, show post
-                    if (in_array($post->getId(), $liked_posts)) { ?>
-                        <div class="col-md-12">
-                            <div class="card mb-4">
-                                <div class="card-header bg-primary text-white">
-                                    <h3 class="card-title text-center">Post <?php echo $post->getId(); ?> </h3>
-                                    <h4 class="card-title text-center">Titolo: <?php echo $post->getTitle(); ?></h4>
-                                </div>
-                                <div class="card-body">
-                                    <p class="card-text">Tags: <?php echo $post->getTags(); ?></p>
-                                    <p class="card-text">Creato dall'utente con ID: <?php echo $post->getUserId(); ?></p>
 
-
-                                    <?php foreach ($post->getMediaList() as $media) : ?>
-                                        <div class="mb-3">
-                                            <p class="card-text">Tipo: <?php echo $media->getType(); ?></p>
-                                            <?php if ($media->getType() === 'photo') : ?>
-                                                <img src="<?php echo $media->getPath(); ?>" class="card-img-top img-fluid" style="height:250px;" alt="Media">
-                                            <?php elseif ($media->getType() === 'video') : ?>
-                                                <video controls class="card-img-top" style="max-height: 250px;">
-                                                    <source src="<?php echo $media->getPath(); ?>" type="video/mp4">
-                                                    Your browser does not support the video tag.
-                                                </video>
-                                            <?php endif; ?>
-                                        </div>
-                                    <?php endforeach; ?>
-
-                                    <span class="badge bg-primary"> tot likes
-                                    </span>
-                                </div>
-
-                            </div>
+                if (empty($liked_posts)) { ?>
+                    <div class='row justify-content-center'>
+                        <div class="alert alert-info text-primary" role="alert" style="width: 60%;">
+                            <h4 class="alert-heading">Hey friend!</h4>
+                            <h6> You still haven't liked any posts.</h6>
+                            <hr>
+                            <p class="mb-1">Go to "posts" and click on the "Mi piace" button to add the posts you like to this section.</p>
                         </div>
-                    <?php } ?>
-                <?php endforeach; ?>
+                    </div>
+                    <?php } else {
+                    // Invert the post array
+                    $posts = array_reverse($posts);
+                    foreach ($posts as $post) :
+                        // If the post id matches the id of the posts where the user has liked, show post
+                        if (in_array($post->getId(), $liked_posts)) { ?>
+                            <div class="col-md-12">
+                                <div class="card mb-4">
+                                    <div class="card-header bg-primary text-white">
+                                        <h3 class="card-title text-center">Post <?php echo $post->getId(); ?> </h3>
+                                        <h4 class="card-title text-center">Titolo: <?php echo $post->getTitle(); ?></h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text">Tags: <?php echo $post->getTags(); ?></p>
+                                        <p class="card-text">Creato dall'utente con ID: <?php echo $post->getUserId(); ?></p>
+
+
+                                        <?php foreach ($post->getMediaList() as $media) : ?>
+                                            <div class="mb-3">
+                                                <p class="card-text">Tipo: <?php echo $media->getType(); ?></p>
+                                                <?php if ($media->getType() === 'photo') : ?>
+                                                    <img src="<?php echo $media->getPath(); ?>" class="card-img-top img-fluid" style="height:250px;" alt="Media">
+                                                <?php elseif ($media->getType() === 'video') : ?>
+                                                    <video controls class="card-img-top" style="max-height: 250px;">
+                                                        <source src="<?php echo $media->getPath(); ?>" type="video/mp4">
+                                                        Your browser does not support the video tag.
+                                                    </video>
+                                                <?php endif; ?>
+                                            </div>
+                                        <?php endforeach; ?>
+
+                                        <span class="badge bg-primary"> tot likes
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        <?php } ?>
+                    <?php endforeach; ?>
+                <?php } ?>
             <?php } else {
                 echo "Nessun risultato trovato.";
             }
