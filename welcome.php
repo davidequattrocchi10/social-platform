@@ -32,11 +32,11 @@
                 // Invert the post array
                 $posts = array_reverse($posts);
                 foreach ($posts as $post) : ?>
-                    <div class="col-md-12">
+                    <div class="col-md-12 post-item">
                         <div class="card mb-4">
                             <div class="card-header bg-primary text-white">
                                 <h3 class="card-title text-center">Post <?php echo $post->getId(); ?> </h3>
-                                <h4 class="card-title text-center">Titolo: <?php echo $post->getTitle(); ?></h4>
+                                <h4 class="card-title text-center post-title">Titolo: <?php echo $post->getTitle(); ?></h4>
                             </div>
                             <div class="card-body">
                                 <p class="card-text">Tags: <?php echo $post->getTags(); ?></p>
@@ -86,7 +86,11 @@
         </div>
     </footer>
 
+    <!-- Include search.js file -->
+    <script src="lib/search.js"></script>
+    <!-- Include functions.js file -->
     <script src="lib/functions.js"></script>
+
     <script>
         // When the page is  loaded
         document.addEventListener('DOMContentLoaded', function() {

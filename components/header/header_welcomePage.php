@@ -23,8 +23,8 @@ session_start();
                     </ul>
                 </li>
             </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <form id="searchForm" class="d-flex" role="search">
+                <input id="searchInput" class="form-control me-2" type="search" placeholder="Search a title" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
         </div>
